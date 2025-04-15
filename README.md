@@ -34,3 +34,71 @@ This project is a language-agnostic visualization web application built as part 
 cd backend
 pip install -r requirements.txt
 python3 run.py
+```
+
+Then open your browser at [http://localhost:4200](http://localhost:4200)
+
+---
+
+## 📁 Project Structure
+
+```
+.
+├── backend/
+│   ├── app/
+│   │   ├── __init__.py
+│   │   ├── routes.py
+│   │   └── visualization_engine.py
+│   └── run.py
+├── frontend/
+│   └── src/app/...
+├── static/
+│   └── visualizations/
+├── requirements.txt
+├── README.md
+```
+
+---
+
+## 📊 Example Visualizations
+
+### Python
+- ✅ Static: `matplotlib` bar chart
+- ✅ Interactive: `plotly` scatter plot
+- ✅ 3D (optional): `plotly` surface plot
+
+### R
+- ✅ Static: `ggplot2` bar chart
+- ✅ Interactive: `plotly` via `htmlwidgets::saveWidget`
+- ✅ 3D (optional): `rgl::plot3d` with WebGL output
+
+---
+
+## 🧠 Issues & Solutions
+
+| Issue | Resolution |
+|-------|------------|
+| `plotly` not generating output | Installed `plotly`, verified `write_html()` |
+| `Rscript` not executing | Installed required R packages (`plotly`, `htmlwidgets`) |
+| CORS errors between Angular and Flask | Used `flask-cors` to allow cross-origin requests |
+| HTML files not showing in UI | Added iframe support in Angular + DOM sanitizer |
+
+---
+
+## 🎥 Demo Video
+
+📽 [Click here to watch the screen recording demo](https://your-demo-link-here.com)
+
+---
+
+## 📬 Submission
+
+GitHub Repo: [https://github.com/your-username/visualization-app](https://github.com/your-username/visualization-app)
+
+---
+
+## 🙋 Author
+
+Phaneendra Koushik Ballamudi  
+Master’s in Data Science  
+Indiana University Bloomington
