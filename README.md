@@ -93,7 +93,7 @@ Then open your browser at [http://localhost:4200](http://localhost:4200)
 
 ## 📬 Submission
 
-GitHub Repo: [https://github.com/your-username/visualization-app](https://github.com/your-username/visualization-app)
+GitHub Repo: [https://github.com/koushik-00/Language-Agnostic-Visualization-Web-App](https://github.com/your-username/visualization-app)
 
 ---
 
