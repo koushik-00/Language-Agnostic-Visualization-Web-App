@@ -1,0 +1,29 @@
+<div class="editor-container">
+    <div class="language-selector">
+      <label for="language">Select Language:</label>
+      <select id="language" [(ngModel)]="selectedLanguage">
+        <option value="python">Python</option>
+        <option value="r">R</option>
+      </select>
+    </div>
+    
+    <div class="code-editor">
+      <label for="code">Enter your code:</label>
+      <textarea 
+        id="code" 
+        [(ngModel)]="code" 
+        rows="15" 
+        placeholder="Enter your visualization code here..."></textarea>
+    </div>
+    
+    <div class="actions">
+      <button (click)="generateVisualization()" [disabled]="isLoading">
+        {{ isLoading ? 'Generating...' : 'Generate Visualization' }}
+      </button>
+    </div>
+    
+    <div *ngIf="error" class="error-message">
+      {{ error }}
+    </div>
+</div>
+  

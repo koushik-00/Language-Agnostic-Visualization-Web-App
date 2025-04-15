@@ -1,0 +1,40 @@
+<div class="container">
+    <header>
+      <h1>Language Agnostic Visualization Web Application</h1>
+    </header>
+    
+    <div class="main-content">
+      <div class="editor-section">
+        <h2>Code Editor</h2>
+        <app-visualization-editor 
+          (visualizationGenerated)="onVisualizationGenerated($event)">
+        </app-visualization-editor>
+      </div>
+      
+      <div class="visualization-section">
+        <h2>Visualization Output</h2>
+        <app-visualization-display 
+          [visualizationUrl]="currentVisualizationUrl">
+        </app-visualization-display>
+      </div>
+    </div>
+    
+    <div class="examples-section">
+      <h2>Example Scripts</h2>
+      
+      <div class="example-tabs">
+        <button 
+          *ngFor="let example of examples" 
+          (click)="loadExample(example)"
+          [class.active]="currentExample === example">
+          {{ example.name }}
+        </button>
+      </div>
+      
+      <div class="example-description" *ngIf="currentExample">
+        <h3>{{ currentExample.name }}</h3>
+        <p>{{ currentExample.description }}</p>
+      </div>
+    </div>
+</div>
+  
