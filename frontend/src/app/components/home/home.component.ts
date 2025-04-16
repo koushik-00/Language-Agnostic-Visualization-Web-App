@@ -95,6 +95,37 @@ fig.write_html('output.html')`,
         description: 'An interactive scatter plot using Plotly in Python.'
       },
       {
+        name: 'Python 3D Plot (Plotly)',
+        language: 'python',
+        code: `import plotly.graph_objects as go
+import numpy as np
+
+# Sample data
+np.random.seed(42)
+x = np.random.randn(100)
+y = np.random.randn(100)
+z = np.random.randn(100)
+
+# Create 3D scatter plot
+fig = go.Figure(data=[go.Scatter3d(
+    x=x, y=y, z=z,
+    mode='markers',
+    marker=dict(
+        size=5,
+        color=z,
+        colorscale='Viridis',
+        opacity=0.8
+    )
+)])
+
+# Layout settings
+fig.update_layout(title='3D Scatter Plot', width=800, height=600)
+
+# Save as HTML
+fig.write_html('output.html')`,
+        description: 'An interactive 3D scatter plot using Plotly in Python.'
+      },
+      {
         name: 'R Bar Chart (ggplot2)',
         language: 'r',
         code: `library(ggplot2)
@@ -144,6 +175,25 @@ interactive_plot <- ggplotly(p)
 # Save as HTML
 htmlwidgets::saveWidget(interactive_plot, "output.html")`,
         description: 'An interactive scatter plot using plotly in R.'
+      },
+      {
+        name: 'R 3D Plot (rgl)',
+        language: 'r',
+        code: `library(rgl)
+      library(htmlwidgets)
+      
+      # Sample 3D data
+      x <- rnorm(100)
+      y <- rnorm(100)
+      z <- rnorm(100)
+      
+      # Create 3D scatter plot
+      plot3d(x, y, z, col = rainbow(100))
+      
+      # Save widget
+      rglwidget() %>%
+        saveWidget("output.html", selfcontained = TRUE)`,
+        description: 'A 3D scatter plot using the rgl package in R.'
       }
     ];
   }

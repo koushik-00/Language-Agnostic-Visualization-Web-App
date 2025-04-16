@@ -11,15 +11,18 @@ RUN apt-get update && apt-get install -y \
     r-cran-ggplot2 \
     r-cran-plotly \
     r-cran-htmlwidgets \
-    libcurl4-openssl-dev \
-    libssl-dev \
-    libxml2-dev \
-    pandoc \
+    libgl1-mesa-dev \
+    libglu1-mesa-dev \
+    libx11-dev \
+    xvfb \
+    libpng-dev \
+    libjpeg-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 # Install R packages using Rscript
-RUN Rscript -e "install.packages(c('ggplot2', 'plotly', 'htmlwidgets'), repos='https://cloud.r-project.org')"
+RUN Rscript -e "install.packages(c('ggplot2', 'plotly', 'htmlwidgets', 'rgl'), repos='https://cloud.r-project.org')"
+
 
 
 # Install Python packages

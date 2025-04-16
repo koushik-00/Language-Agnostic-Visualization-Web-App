@@ -17,43 +17,39 @@ def execute_python_script(code, viz_id):
     
     # Execute the script in a subprocess
     try:
+        print("Running script:", script_path)
         result = subprocess.run(
             ['python3', script_path],
             cwd=temp_dir,
             capture_output=True,
             text=True,
-            timeout=30  # Limit execution time to 30 seconds
+            timeout=30
         )
-        
+
+        print("STDOUT:\n", result.stdout)
+        print("STDERR:\n", result.stderr)
+
         if result.returncode != 0:
-            raise Exception(f"Script execution failed: {result.stderr}")
-        
-        # Check for output files
+            raise Exception(f"Script execution failed with code {result.returncode}:\n{result.stderr}")
+
         output_files = [f for f in os.listdir(temp_dir) if f.endswith(('.png', '.jpg', '.svg', '.html'))]
-        
+        print("Generated output files:", output_files)
+
         if not output_files:
             raise Exception("No visualization output was generated")
-        
-        # Move the output file to the static directory
-        output_file = output_files[0]  # Take the first output file
+
+        output_file = output_files[0]
         output_path = os.path.join(temp_dir, output_file)
-        
-        # Generate a unique filename for the visualization
-        file_ext = os.path.splitext(output_file)[1]  # Fixed: extract extension properly
+        file_ext = os.path.splitext(output_file)[1]
         unique_filename = f"python_{viz_id}{file_ext}"
-        
-        # Destination path in the static directory
-        dest_path = os.path.join(
-            current_app.static_folder, 
-            'visualizations', 
-            unique_filename
-        )
-        
-        # Move the file
-        # os.rename(output_path, dest_path)
+
+        dest_path = os.path.join(current_app.static_folder, 'visualizations', unique_filename)
         shutil.move(output_path, dest_path)
-        
+
         return unique_filename
+    except Exception as e:
+        print("🔥 FULL ERROR:", e)
+        raise e
     
     finally:
         # Clean up the temporary directory
