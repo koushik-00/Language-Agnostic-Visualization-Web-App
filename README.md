@@ -2,7 +2,6 @@
 
 This is a full-stack web application that allows users to write and run **Python** or **R** code to generate **2D and 3D visualizations** in real time. The app supports both **static** (e.g., Matplotlib, ggplot2) and **interactive** (e.g., Plotly, rgl) charts and renders the output as images or embedded HTML.
 
-> Built as part of the CNS SRES Summer 2025 Assessment at Indiana University.
 
 ---
 
@@ -79,11 +78,15 @@ visualization-app/
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/your-username/visualization-app.git
-cd visualization-app
+git clone https://github.com/koushik-00/Language-Agnostic-Visualization-Web-App.git
+cd Language-Agnostic-Visualization-Web-App
 
 # 2. Build and run the app
 docker-compose up --build
+
+# Or
+make build
+make up
 ```
 
 🖥 Open your browser and go to **http://localhost**
