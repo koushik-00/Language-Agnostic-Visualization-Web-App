@@ -11,11 +11,15 @@ export class VisualizationDisplayComponent implements OnChanges {
   @Input() visualizationUrl: string = '';
   safeVisualizationUrl: SafeResourceUrl | null = null;
 
+  
+
   constructor(private sanitizer: DomSanitizer) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['visualizationUrl'] && this.visualizationUrl) {
       this.safeVisualizationUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.visualizationUrl);
+      console.log("Raw URL:", this.visualizationUrl);
+      console.log("Sanitized URL:", this.safeVisualizationUrl);
     }
   }
 

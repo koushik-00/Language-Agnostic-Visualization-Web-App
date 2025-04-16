@@ -7,11 +7,12 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class VisualizationService {
-  private apiUrl = environment.apiUrl;
+  private apiUrl = '/api';
 
   constructor(private http: HttpClient) { }
 
   generateVisualization(language: string, code: string): Observable<any> {
+    console.log("Calling API:", `${this.apiUrl}/visualize`);
     return this.http.post(`${this.apiUrl}/visualize`, { language, code });
   }
 }

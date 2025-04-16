@@ -2,6 +2,7 @@ import os
 import tempfile
 import subprocess
 import uuid
+import shutil
 from flask import current_app
 
 def execute_python_script(code, viz_id):
@@ -49,7 +50,8 @@ def execute_python_script(code, viz_id):
         )
         
         # Move the file
-        os.rename(output_path, dest_path)
+        # os.rename(output_path, dest_path)
+        shutil.move(output_path, dest_path)
         
         return unique_filename
     
@@ -83,6 +85,7 @@ def execute_r_script(code, viz_id):
         )
         
         if result.returncode != 0:
+            print("STDERR:", result.stderr)
             raise Exception(f"Script execution failed: {result.stderr}")
         
         # Check for output files
@@ -107,7 +110,8 @@ def execute_r_script(code, viz_id):
         )
         
         # Move the file
-        os.rename(output_path, dest_path)
+        # os.rename(output_path, dest_path)
+        shutil.move(output_path, dest_path)
         
         return unique_filename
     

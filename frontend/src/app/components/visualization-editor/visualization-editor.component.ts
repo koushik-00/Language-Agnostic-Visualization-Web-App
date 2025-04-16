@@ -34,10 +34,12 @@ export class VisualizationEditorComponent {
           this.visualizationUrl = response.visualizationUrl;
           // Emit event to parent component to display visualization
           this.visualizationGenerated.emit(this.visualizationUrl);
+          console.log("Received URL from backend:", this.visualizationUrl);
         },
         error: (err) => {
           this.isLoading = false;
           this.error = err.error?.message || 'Failed to generate visualization. Please try again.';
+          console.error(err);
         }
       });
   }

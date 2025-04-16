@@ -11,7 +11,10 @@ services:
       - app-network
 
   backend:
+    platform: linux/amd64
     build: ./backend
+    ports:
+      - "5001:5001"
     volumes:
       - ./backend:/app
       - static-content:/app/app/static

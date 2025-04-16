@@ -1,31 +1,24 @@
-# Stage 1: Build the Angular application
+# Stage 1: Build Angular app
 FROM node:18 as build
 
 WORKDIR /app
 
-# Copy package.json and package-lock.json
 COPY package*.json ./
-
-# Install dependencies
 RUN npm install
-
-# Copy the rest of the application
 COPY . .
+RUN npx ng build --configuration production --project frontend
 
-# Build the application
-RUN npm run build -- --configuration production
-
-# Stage 2: Serve the application with Nginx
+# Stage 2: Serve with Nginx
 FROM nginx:alpine
 
-# Copy the build output to replace the default nginx contents
-COPY --from=build /app/dist/frontend /usr/share/nginx/html
+# 🔥 Delete all default Nginx files (DO NOT SKIP)
+RUN rm -rf /usr/share/nginx/html/*
 
-# Copy custom nginx config
+# ✅ Copy the SSR browser build
+COPY --from=build /app/dist/frontend/browser /usr/share/nginx/html
+
+# ✅ Include custom Nginx config
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Expose port 80
 EXPOSE 80
-
-# Start Nginx server
 CMD ["nginx", "-g", "daemon off;"]
